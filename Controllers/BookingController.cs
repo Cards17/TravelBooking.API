@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelBooking.API.Data;
+using TravelBooking.API.Data.Services;
 using TravelBooking.API.Models;
 
 namespace TravelBooking.API.Controllers
@@ -10,15 +11,15 @@ namespace TravelBooking.API.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
-        private readonly DataContext _context;
-        public BookingController(DataContext context)   
+        private readonly IBookingRepository _bookingRepository;
+        public BookingController(IBookingRepository bookingRepository)   
         {
-            _context = context;
+            _bookingRepository = bookingRepository;
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
-            return await _context.Bookings.ToListAsync();
+            return Ok(await _bookingRepository.GetBookings());
         }
     }
 }
