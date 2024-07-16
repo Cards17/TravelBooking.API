@@ -136,3 +136,4 @@ C:\Users\User\source\repos\Travel Booking Solution\TravelBooking.API\obj\Debug\n
 C:\Users\User\source\repos\Travel Booking Solution\TravelBooking.API\obj\Debug\net8.0\TravelBooking.API.pdb
 C:\Users\User\source\repos\Travel Booking Solution\TravelBooking.API\obj\Debug\net8.0\TravelBooking.API.genruntimeconfig.cache
 C:\Users\User\source\repos\Travel Booking Solution\TravelBooking.API\obj\Debug\net8.0\ref\TravelBooking.API.dll
+C:\Users\User\source\repos\Travel Booking Solution\TravelBooking.API\bin\Debug\net8.0\AutoMapper.dll

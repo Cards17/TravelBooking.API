@@ -5,6 +5,9 @@ namespace TravelBooking.API.Data.Services
 {
     public interface IBookingRepository
     {
-        Task<IEnumerable<Booking>> GetBookings(); // change to BookingDto
+        Task<IEnumerable<BookingDto>> GetBookings();
+        Task<BookingDto> GetBookingById(int id);
+        Task AddBooking(BookingDto booking);
+        Task UpdateBooking(int id, BookingDto booking);
     }
 }
