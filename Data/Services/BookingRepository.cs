@@ -40,10 +40,19 @@ namespace TravelBooking.API.Data.Services
 
         public async Task UpdateBooking(int id, BookingDto bookingDto)
         {
-
             var booking = _mapper.Map<Booking>(bookingDto);
             _dataContext.Entry(booking).State = EntityState.Modified;
             await _dataContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteBooking(int id)
+        {
+            var booking = await _dataContext.Bookings.FindAsync(id);
+            if (booking != null)
+            {
+                _dataContext.Bookings.Remove(booking);
+                await _dataContext.SaveChangesAsync();
+            }
         }
 
     }

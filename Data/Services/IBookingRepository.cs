@@ -9,5 +9,6 @@ namespace TravelBooking.API.Data.Services
         Task<BookingDto> GetBookingById(int id);
         Task AddBooking(BookingDto booking);
         Task UpdateBooking(int id, BookingDto booking);
+        Task DeleteBooking(int id);
     }
 }

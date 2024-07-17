@@ -1,11 +1,18 @@
-﻿namespace TravelBooking.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TravelBooking.API.Models
 {
     public class Booking
     {
+        [Key]
         public  int BookingId { get; set; }
-        public required string FullName  { get; set; }
-        public required string EmailAddress { get; set; } 
-        public required string PhoneNumber { get; set; }
-        public string DistinationAddress { get; set; } = string.Empty;
+        public required string DistinationAddress { get; set; }
+        public required string TourPackage { get; set; }
+        public required DateOnly TravelDate { get; set; }
+        public required DateOnly ReturnDate { get; set; }
+
+        [ForeignKey(nameof(UserAccountId))]
+        public int UserAccountId { get; set; }
     }
 }

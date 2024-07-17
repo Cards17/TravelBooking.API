@@ -11,5 +11,6 @@ namespace TravelBooking.API.Data
         }
 
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
     }
 }

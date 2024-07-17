@@ -62,5 +62,27 @@ namespace TravelBooking.API.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBooking(int id)
+        {
+            try
+            {
+                var booking = await _bookingRepository.GetBookingById(id);
+                if (booking == null)
+                {
+                    return NotFound();
+                }
+
+                await _bookingRepository.DeleteBooking(id);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting booking with ID {id}: {ex.Message}", ex);
+            }
+            return NoContent();
+        }
+
     }
 }
