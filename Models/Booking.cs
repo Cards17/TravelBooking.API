@@ -9,8 +9,8 @@ namespace TravelBooking.API.Models
         public  int BookingId { get; set; }
         public required string DistinationAddress { get; set; }
         public required string TourPackage { get; set; }
-        public required DateOnly TravelDate { get; set; }
-        public required DateOnly ReturnDate { get; set; }
+        public required DateTime TravelDate { get; set; }
+        public required DateTime ReturnDate { get; set; }
 
         [ForeignKey(nameof(UserAccountId))]
         public int UserAccountId { get; set; }

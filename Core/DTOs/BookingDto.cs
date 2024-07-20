@@ -3,9 +3,9 @@
     public class BookingDto
     {
         public int BookingId { get; set; }
-        public required string FullName { get; set; }
-        public required string EmailAddress { get; set; }
-        public required string PhoneNumber { get; set; }
-        public string DistinationAddress { get; set; } = string.Empty;
+        public required string DistinationAddress { get; set; }
+        public required string TourPackage { get; set; }
+        public required DateTime TravelDate { get; set; }
+        public required DateTime ReturnDate { get; set; }
     }
 }
