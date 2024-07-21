@@ -75,7 +75,7 @@ namespace TravelBooking.API.Controllers
                     return NotFound();
                 }
 
-                await _userAccountRepository.DeleteUserAccount(id);
+                 await _userAccountRepository.DeleteUserAccount(id);
 
             }
             catch (Exception ex)
