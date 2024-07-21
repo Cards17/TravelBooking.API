@@ -10,6 +10,8 @@ namespace TravelBooking.API.Core.MapperProfiles
         {
             CreateMap<BookingDto, Booking>();
             CreateMap<Booking, BookingDto>();
+            CreateMap<UserAccountDto, UserAccount>();
+            CreateMap<UserAccount, UserAccountDto>();
         }
     }
 }
