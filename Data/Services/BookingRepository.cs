@@ -18,9 +18,12 @@ namespace TravelBooking.API.Data.Services
             _mapper = mapper;
 
         }
-        public async Task<IEnumerable<BookingDto>> GetBookings()
+
+        public async Task<IEnumerable<BookingDto>> GetBookings(int userAccountId)
         {
-            var bookings = await _dataContext.Bookings.ToListAsync();
+            var bookings = await _dataContext.Bookings
+                                         .Where(b => b.UserAccountId == userAccountId)
+                                         .ToListAsync();
             return _mapper.Map<IEnumerable<BookingDto>>(bookings);
         }
 
@@ -30,11 +33,22 @@ namespace TravelBooking.API.Data.Services
             return _mapper.Map<BookingDto>(bookingById);
         }
 
-        public async Task AddBooking(BookingDto bookingDto)
+        public async Task AddBooking(int userAccountId, BookingDto bookingDto)
         {
+            if (!await UserAccountExist(userAccountId))
+            {
+                throw new InvalidOperationException($"UserAccountId {userAccountId} does not exist.");
+            }
             var booking = _mapper.Map<Booking>(bookingDto);
+            booking.UserAccountId = userAccountId;
             await _dataContext.Bookings.AddAsync(booking);
             await _dataContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> UserAccountExist(int userAccountId)
+        {
+            return await _dataContext.UserAccounts
+                .AnyAsync(ua => ua.UserAccountId == userAccountId);
         }
 
 

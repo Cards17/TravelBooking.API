@@ -7,7 +7,7 @@ using TravelBooking.API.Models;
 
 namespace TravelBooking.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[action]")]
     [ApiController]
     public class BookingController : ControllerBase
     {
@@ -18,10 +18,11 @@ namespace TravelBooking.API.Controllers
             _bookingRepository = bookingRepository;
             _mapper = mapper;
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingDto>>> GetBookings()
+        [HttpGet("{userAccountId}")]
+        public async Task<ActionResult<IEnumerable<BookingDto>>> GetBookings(int userAccountId)
         {
-            return Ok(await _bookingRepository.GetBookings());
+            return Ok(await _bookingRepository.GetBookings(userAccountId));
+
         }
 
         [HttpGet("{id}")]
@@ -37,10 +38,17 @@ namespace TravelBooking.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddBooking(BookingDto bookingDto)
+        public async Task<IActionResult> AddBooking(int userAccountId, BookingDto bookingDto)
         {
-            await _bookingRepository.AddBooking(bookingDto);
-            return Ok();
+            try
+            {
+                await _bookingRepository.AddBooking(userAccountId, bookingDto);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         [HttpPut("{id}")]

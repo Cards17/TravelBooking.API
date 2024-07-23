@@ -7,7 +7,7 @@ using TravelBooking.API.Data.Services;
 
 namespace TravelBooking.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
